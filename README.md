@@ -13,6 +13,9 @@ $ sudo ./install.sh
 
 Ghost is served via nginx on localhost.
 
+Tested on:
+* Ubuntu 14.04 Server
+
 ## Test with vagrant
 
 ```bash
