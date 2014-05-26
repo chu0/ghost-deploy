@@ -1,8 +1,8 @@
 # Ghost-deploy
 
-Ghost-deploy is a shell script to take a clean Ubuntu server and
-install the latest [Ghost](https://ghost.org/) blog with nginx in
-front. It basically wraps the instructions from [Ghost Linux
+Ghost-deploy is a shell script to make the latest
+[Ghost](https://ghost.org/) flying on nginx. It basically wraps the
+instructions from [Ghost Linux
 Installation](http://docs.ghost.org/installation/linux/) and [Ghost
 deploy](http://docs.ghost.org/installation/deploy/) in a script.
 
