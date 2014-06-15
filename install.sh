@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 HERE=$(dirname $(readlink -f $0))
 
-apt-get install nginx nodejs nodejs-legacy npm curl unzip
+apt-get -y install nginx nodejs nodejs-legacy npm curl unzip
 
 # # add ghost user / group
 useradd -r ghost -U
