@@ -23,7 +23,7 @@ Tested on:
 **Note:** The box in the vagrant file is a vagrant-kvm box
 
 ```bash
-$ vagrant up
+$ vagrant up --provider=kvm
 $ vagrant ssh
 $ cd /vagrant
 $ sudo ./install.sh
