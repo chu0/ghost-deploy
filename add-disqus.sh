@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # From: https://help.disqus.com/customer/portal/articles/1454924-ghost-installation-instructions
-. paths.sh
+. common.sh
 
 DISQUS_SHORTNAME="$1"
 
@@ -9,7 +9,7 @@ DISQUS_COUNT="$2"
 
 if [ -z $DISQUS_SHORTNAME ]; then
     echo "Usage $0 DISQUS_SHORTNAME"
-    echo "Register at https://disqus.com/admin/signup/"
+    echo "Get DISQUS_SHORTNAME by registering at https://disqus.com/admin/signup/"
     exit 1
 fi
 
@@ -39,5 +39,4 @@ if [ ! -z "$DISQUS_COUNT" ]; then
     sed -i "s~<span class=\"post-meta\".*~$html_counts_index~" $GHOST_THEME_PATH/index.hbs
 fi
 
-echo "Changes takes effect when ghost is restarted"
-echo "service ghost restart"
+service ghost restart

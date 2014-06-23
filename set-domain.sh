@@ -1,8 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # Updates the domain in ghost and nginx
-[ -n "$GHOST_HOME" ]   || GHOST_HOME=/srv/www/ghost
-[ -n "$GHOST_CONFIG" ] || GHOST_CONFIG="$GHOST_HOME/config.js"
-[ -n "$NGINX_CONFIG" ] || NGINX_CONFIG=/etc/nginx/sites-available/ghost
+. common.sh
 
 NEW_DOMAIN="$1"
 
