@@ -15,8 +15,21 @@ $ sudo ./install.sh
 
 Point browser to http://serverip
 
+Additional tasks:
+
+Set domain:
+```bash
+$ sudo ./set-domain.sh blog.example.com
+```
+
+Add disqus:
+```bash
+$ sudo ./add-disqus.sh disqus_name
+```
+
 Tested on:
 * Ubuntu 14.04 Server
+
 
 ## Test with vagrant
 
