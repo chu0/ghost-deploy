@@ -18,4 +18,5 @@ OLD_DOMAIN=$(echo $OLD_URL | cut -d / -f 3)
 sed -i "s|$OLD_DOMAIN|$NEW_DOMAIN|" $GHOST_CONFIG
 sed -i "s|server_name.*|server_name $NEW_DOMAIN;|" $NGINX_CONFIG
 
+service ghost restart
 service nginx restart
