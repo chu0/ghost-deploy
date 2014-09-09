@@ -27,9 +27,13 @@ Add disqus:
 $ sudo ./add-disqus.sh disqus_name
 ```
 
+Add google analytics:
+```bash
+$ sudo ./add-ga.sh UA-XXXX-X
+```
+
 Tested on:
 * Ubuntu 14.04 Server
-
 
 ## Test with vagrant
 
