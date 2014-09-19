@@ -41,9 +41,6 @@ Tested on:
 
 ```bash
 $ vagrant up --provider=kvm
-$ vagrant ssh
-$ cd /vagrant
-$ sudo ./install.sh
 ```
 
 Point browser to http://localhost:8080
