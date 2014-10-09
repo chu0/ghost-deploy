@@ -27,9 +27,13 @@ Add disqus:
 $ sudo ./add-disqus.sh disqus_name
 ```
 
+Add google analytics:
+```bash
+$ sudo ./add-ga.sh UA-XXXX-X
+```
+
 Tested on:
 * Ubuntu 14.04 Server
-
 
 ## Test with vagrant
 
@@ -37,9 +41,9 @@ Tested on:
 
 ```bash
 $ vagrant up --provider=kvm
-$ vagrant ssh
+$ vagrant ssh ubuntu
 $ cd /vagrant
-$ sudo ./install.sh
+$ ./install.sh
 ```
 
 Point browser to http://localhost:8080

@@ -15,4 +15,10 @@ check_root() {
     fi
 }
 
+error() {
+    local msg="${1}"
+    echo "${msg}"
+    exit 1
+}
+
 check_root

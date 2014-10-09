@@ -2,13 +2,12 @@
 # From: https://help.disqus.com/customer/portal/articles/1454924-ghost-installation-instructions
 . common.sh
 
-DISQUS_SHORTNAME="$1"
-
-# Set 2. arg to enable comment count
-DISQUS_COUNT="$2"
+[ $DISQUS_SHORTNAME ] || DISQUS_SHORTNAME="$1"
+[ $DISQUS_COUNT ]     || DISQUS_COUNT="$2"
 
 if [ -z $DISQUS_SHORTNAME ]; then
-    echo "Usage $0 DISQUS_SHORTNAME"
+    echo "Usage $0 DISQUS_SHORTNAME [COUNT]"
+    echo "Give COUNT a value to enable"
     echo "Get DISQUS_SHORTNAME by registering at https://disqus.com/admin/signup/"
     exit 1
 fi
@@ -21,22 +20,26 @@ html_counts="<script type='text/javascript'>var disqus_shortname = '$DISQUS_SHOR
 
 html_counts_index="<span class='post-meta'><time datetime='{{date format='YYYY-MM-DD'}}'>{{date format='DD MMM YYYY'}}</time> {{tags prefix='on '}} <a href='{{url}}#disqus_thread'>Comments</a></span>"
 
-if [ ! -e $POST_TPL.bac ]; then
-    cp $POST_TPL $POST_TPL.bac
+# Exit if already added
+grep -q 'disqus.com' $POST_TPL && error "Disqus already added!"
 
-    if [ ! -z "$DISQUS_COUNT" ]; then
-        cp $DEFAULT_TPL $DEFAULT_TPL.bac
-        cp $INDEX_TPL $INDEX_TPL.bac
-    fi
-else
-    echo "Disqus already added"
-    exit 1
+cp $POST_TPL $POST_TPL.disqus.bac
+
+if [ ! -z "$DISQUS_COUNT" ]; then
+    cp $DEFAULT_TPL $DEFAULT_TPL.disqus.bac
+    cp $INDEX_TPL $INDEX_TPL.disqus.bac
 fi
 
 sed -i "s~</article>~$html_comments</article>~" $GHOST_THEME_PATH/post.hbs
 if [ ! -z "$DISQUS_COUNT" ]; then
     sed -i "s~</body>~$html_counts</body>~" $GHOST_THEME_PATH/default.hbs
     sed -i "s~<span class=\"post-meta\".*~$html_counts_index~" $GHOST_THEME_PATH/index.hbs
+fi
+
+# Save for upgrades
+echo "DISQUS_SHORTNAME=$DISQUS_SHORTNAME" > data/DISQUS
+if [ ! -z "$DISQUS_COUNT" ]; then
+    echo "DISQUS_COUNT=$DISQUS_COUNT" >> data/DISQUS    
 fi
 
 service ghost restart
