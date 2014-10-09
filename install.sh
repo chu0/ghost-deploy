@@ -35,3 +35,6 @@ echo "./set-domain.sh blog.example.com"
 echo
 echo "Add disqus:"
 echo "./add-disqus.sh DISQUS_SHORTNAME"
+echo 
+echo "Add mail sending via postfix:"
+echo "./add-mail.sh blog.example.com"
