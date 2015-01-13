@@ -2,7 +2,7 @@
 # Add mailsending via postfix
 . common.sh
 
-DOMAIN="$1"
+[ $DOMAIN ] || DOMAIN="$1"
 
 if [ -z "$DOMAIN" ]; then
     echo "Usage: ${0} DOMAIN"
@@ -23,6 +23,8 @@ NEW_MAIL_CONFIG="mail: { transport: 'sendmail', fromaddress: 'no-reply@${DOMAIN}
 
 cp $GHOST_CONFIG $GHOST_CONFIG.postfix.bac
 sed -i "s|$OLD_MAIL_CONFIG|$NEW_MAIL_CONFIG|" $GHOST_CONFIG
+
+echo "DOMAIN=${DOMAIN}" > data/MAIL    
 
 service postfix restart
 service ghost restart

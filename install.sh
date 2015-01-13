@@ -5,16 +5,17 @@ HERE=$(dirname $(readlink -f $0))
 
 apt-get -y install nginx nodejs nodejs-legacy npm curl unzip
 
-# # add ghost user / group
+# add ghost user / group
 useradd -r ghost -U
 
-# # install ghost
+# install ghost
 mkdir -p /srv/www
 curl -L https://ghost.org/zip/ghost-latest.zip -o /tmp/ghost.zip
 unzip -uo /tmp/ghost.zip -d $GHOST_HOME
 cd $GHOST_HOME ; npm install --production
 
 rsync -av $HERE/conf/ /
+mkdir -p /var/run/ghost
 chown -R ghost:ghost /var/run/ghost $GHOST_HOME
 
 # remove nginx default site
