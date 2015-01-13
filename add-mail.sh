@@ -17,11 +17,13 @@ apt-get -y install postfix
 # listen only on localhost
 postconf -e 'inet_interfaces = 127.0.0.1, [::1]'
 
-# Slice out the production domain from ghost config
+# Slice out mail line from from ghost config
 OLD_MAIL_CONFIG=$(grep 'mail:.*{.*},' /srv/www/ghost/config.js)
 NEW_MAIL_CONFIG="mail: { transport: 'sendmail', fromaddress: 'no-reply@${DOMAIN}', options: {}},"
 
 cp $GHOST_CONFIG $GHOST_CONFIG.postfix.bac
+
+# Replace old mail config with new one
 sed -i "s|$OLD_MAIL_CONFIG|$NEW_MAIL_CONFIG|" $GHOST_CONFIG
 
 echo "DOMAIN=${DOMAIN}" > data/MAIL    
