@@ -62,8 +62,4 @@ $ ./install.sh
 
 Point browser to http://localhost:8080
 
-## TODO
-
-* set blog url
-
 
